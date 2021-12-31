@@ -1,0 +1,26 @@
+{
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ],
+    "module": "CommonJS",
+    "target": "es2020",
+    "baseUrl": "./src",
+  "paths": {
+    "@controllers/*": [
+      "./src/controllers/*"
+    ],
+    "@entities/*": [
+      "./src/entities/*"
+    ],
+    "@database/*": [
+      "./src/database/*"
+    ],
+    "@useCases/*": [
+      "./src/useCases/*"
+    ],
+    "@repositories/*": [
+      "./src/repositories/*"
+    ]
+  }
+}
