@@ -1,2 +1,3 @@
 /jsconfig copy.json
 /node_modules
+.env
