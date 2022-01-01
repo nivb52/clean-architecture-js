@@ -7,12 +7,12 @@ const _getUserId = (userOrUserId) =>
     : userOrUserId;
 
 const _getById = async (userId) => {
-  const userFromDb = inMemoryDb.products.find((u) => u.id === userId);
+  const userFromDb = inMemoryDb.users.find((u) => u.id === userId);
   return userFromDb;
 };
 
 const _getIndexById = async (userId) => {
-  const userFromDbIndex = inMemoryDb.products.findIndex((u) => u.id === userId);
+  const userFromDbIndex = inMemoryDb.users.findIndex((u) => u.id === userId);
   return userFromDbIndex;
 };
 
@@ -21,7 +21,7 @@ module.exports = {
     if (!user.id) {
       user.id = randomUUID();
     }
-    inMemoryDb.products.push(user);
+    inMemoryDb.users.push(user);
     return Object.assign({}, user);
   },
   update: async (user) => {
@@ -38,7 +38,7 @@ module.exports = {
     if (typeof userIndex !== 'number' || userIndex < 0) {
       return null;
     }
-    inMemoryDb.products.splice(userIndex, 1);
+    inMemoryDb.users.splice(userIndex, 1);
     return {};
   },
   getById: async (userId) => {
