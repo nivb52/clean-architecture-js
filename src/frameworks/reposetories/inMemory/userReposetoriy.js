@@ -24,12 +24,12 @@ module.exports = {
     inMemoryDb.users.push(user);
     return Object.assign({}, user);
   },
-  update: async (user) => {
-    let userRecord = await _getById(user.id);
+  update: async (updatedUser) => {
+    let userRecord = await _getById(updatedUser.id);
     if (!userRecord) {
       return null;
     }
-    userRecord = Object.assign(userRecord, user);
+    userRecord = Object.assign(userRecord, updatedUser);
     return Object.assign({}, userRecord);
   },
 
