@@ -67,9 +67,7 @@ describe("User use cases", () => {
       );
 
       // check the result
-      for (let key in userData) {
-        expect(updatededUser[key]).toBe(userData[key]);
-      }
+      expect(updatededUser).toEqual(userData);
 
       // check that the dependencies called as expected
       const invokedFunctionArguments = mockUserRepo.update.mock.calls[0][0];
