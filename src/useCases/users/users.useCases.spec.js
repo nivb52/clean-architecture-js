@@ -3,7 +3,14 @@ const Chance = require("chance");
 const chance = new Chance();
 
 // const { User, userConstants } = require("../../entities/User");
-const { user: {addUserUseCase, getUserByIdUseCase, updateUserUseCase }} = require("../index");
+const {
+  user: {
+    addUserUseCase,
+    getUserByIdUseCase,
+    updateUserUseCase,
+    deleteUserUseCase,
+  },
+} = require("../index");
 const { userRepository } = require("../../frameworks/reposetories/inMemory/");
 const fakeUserFactory = require("../../../tests/helpers/user.fake");
 const createTestUser = () => fakeUserFactory(chance);
@@ -19,8 +26,10 @@ const mockUserRepo = {
     console.log(user);
     return user;
   }),
-  update: jest.fn(async (user) => Object.assign({}, user)
+  update: jest.fn(async (user) =>
+    user.id ? Object.assign({}, user) : new Error("id is missing")
   ),
+  delete: jest.fn(async (user) => (user.id ? {} : new Error("id is missing"))),
 };
 
 const dependencies = {
@@ -73,4 +82,21 @@ describe("User use cases", () => {
       const invokedFunctionArguments = mockUserRepo.update.mock.calls[0][0];
       expect(invokedFunctionArguments).toBe(userData);
     });
+  
+   test("Delete user (by id) use case", async () => {
+     // create a user data
+     const userData = createTestUser();
+     userData.id = randomUUID();
+     // call delete a user
+     const deletedUser = await deleteUserUseCase(dependencies).execute(
+       userData
+     );
+
+     // check the result
+     expect(deletedUser).toStrictEqual({});
+
+     // check that the dependencies called as expected
+     const invokedFunctionArguments = mockUserRepo.delete.mock.calls[0][0];
+     expect(invokedFunctionArguments).toMatchObject(userData);
+   });
 });
