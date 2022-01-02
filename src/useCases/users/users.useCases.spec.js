@@ -3,7 +3,7 @@ const Chance = require("chance");
 const chance = new Chance();
 
 // const { User, userConstants } = require("../../entities/User");
-const { addUserUseCase, getUserByIdUseCase } = require("../index");
+const { user: {addUserUseCase, getUserByIdUseCase, updateUserUseCase }} = require("../index");
 const { userRepository } = require("../../frameworks/reposetories/inMemory/");
 const fakeUserFactory = require("../../../tests/helpers/user.fake");
 const createTestUser = () => fakeUserFactory(chance);
@@ -18,7 +18,9 @@ const mockUserRepo = {
     user.id = id;
     console.log(user);
     return user;
-  })
+  }),
+  update: jest.fn(async (user) => Object.assign({}, user)
+  ),
 };
 
 const dependencies = {
@@ -36,9 +38,9 @@ describe("User use cases", () => {
     expect(addedUser.name).toBe(newUser.name);
 
     // check that the dependencies called as expected
-    const call = mockUserRepo.add.mock.calls[0][0];
-    expect(call.id).toBeUndefined();
-    expect(call.name).toBe(newUser.name);
+    const invokedFunctionArguments = mockUserRepo.add.mock.calls[0][0];
+    expect(invokedFunctionArguments.id).toBeUndefined();
+    expect(invokedFunctionArguments.name).toBe(newUser.name);
   });
   test("get user by id use case", async () => {
     const id = randomUUID();
@@ -54,4 +56,23 @@ describe("User use cases", () => {
     const expectedId = mockUserRepo.getById.mock.calls[0][0];
     expect(expectedId).toBe(id);
   });
+
+    test("Update user (by id) use case", async () => {
+      // create a user data
+      const userData = createTestUser();
+      userData.id = randomUUID();
+      // call update a user
+      const updatededUser = await updateUserUseCase(dependencies).execute(
+        userData
+      );
+
+      // check the result
+      for (let key in userData) {
+        expect(updatededUser[key]).toBe(userData[key]);
+      }
+
+      // check that the dependencies called as expected
+      const invokedFunctionArguments = mockUserRepo.update.mock.calls[0][0];
+      expect(invokedFunctionArguments).toBe(userData);
+    });
 });
