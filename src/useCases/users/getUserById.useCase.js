@@ -1,4 +1,3 @@
-const { User } = require("../../entities");
 
 module.exports = (dependencies) => {
   const { userRepository } = dependencies;

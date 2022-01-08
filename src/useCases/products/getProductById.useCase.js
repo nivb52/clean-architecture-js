@@ -1,4 +1,3 @@
-const { Product } = require("../../entities");
 
 module.exports = (dependencies) => {
   const { productRepository } = dependencies;
