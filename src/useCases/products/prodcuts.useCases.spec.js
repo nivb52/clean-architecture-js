@@ -73,7 +73,7 @@ describe("Product use cases", () => {
 
       // check that the dependencies called as expected
       const invokedFunctionArguments = mockProductRepo.update.mock.calls[0][0];
-      expect(invokedFunctionArguments).toBe(productData);
+      expect(invokedFunctionArguments).toStrictEqual(productData);
     });
   
    test("Delete product (by id) use case", async () => {

@@ -10,8 +10,9 @@ module.exports = (dependencies) => {
     if (!userData.id) {
       throw new Error("User should have an id");
     }
-    
-    return userRepository.update(userData);
+
+    const updatedUserData = new User(userData);
+    return userRepository.update(updatedUserData);
   };
 
   return {

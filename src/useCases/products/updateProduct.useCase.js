@@ -11,7 +11,8 @@ module.exports = (dependencies) => {
       throw new Error("User should have an id");
     }
     
-    return productRepository.update(productData);
+    const updatedProduct = new Product(productData);
+    return productRepository.update(updatedProduct);
   };
 
   return {
