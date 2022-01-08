@@ -80,7 +80,7 @@ describe("User use cases", () => {
 
       // check that the dependencies called as expected
       const invokedFunctionArguments = mockUserRepo.update.mock.calls[0][0];
-      expect(invokedFunctionArguments).toBe(userData);
+      expect(invokedFunctionArguments).toStrictEqual(userData);
     });
   
    test("Delete user (by id) use case", async () => {
