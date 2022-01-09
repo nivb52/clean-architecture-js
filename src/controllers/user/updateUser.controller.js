@@ -4,7 +4,7 @@ module.exports = (dependencies) => {
   // update user
   return async function (req, res, next) {
     try {
-      const { updateUserUseCase } = dependencies.useCases;
+      const { updateUserUseCase } = dependencies.useCases.user;
       const updateUserUseCaseAction = updateUserUseCase(dependencies);
 
           const { body = {} } = req;
