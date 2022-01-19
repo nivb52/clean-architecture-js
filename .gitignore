@@ -1,3 +1,7 @@
 /jsconfig copy.json
 /node_modules
 .env
+.history
+.idea
+.env
+.evn.*
