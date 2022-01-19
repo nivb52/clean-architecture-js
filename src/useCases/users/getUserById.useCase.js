@@ -7,7 +7,7 @@ module.exports = (dependencies) => {
 
   const execute = ({id}) => {
     if (!id) {
-      throw new Error("Id param is miising");
+      throw new Error("Id param is missing");
     }
     return userRepository.getById(id);
   };
@@ -16,3 +16,4 @@ module.exports = (dependencies) => {
     execute,
   };
 };
+ 
