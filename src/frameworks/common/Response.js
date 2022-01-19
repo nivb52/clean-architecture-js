@@ -3,15 +3,23 @@ module.exports.Response = class Response {
     this.status = status;
     this.error = error;
     this.content = content;
-  } 
+  }
 };
 
 module.exports.Error = class ResponseError {
-  constructor({ status, message, reason, url, ip }) {
+  constructor({ status, message, reason, url, ip, validationError }) {
     this.status = status;
     this.message = message;
     this.reason = reason;
     this.url = url;
     this.ip = ip;
+    this.validationError = validationError;
+  }
+};
+
+module.exports.ValidationError = class ValidationError {
+  constructor({ field, msg }) {
+    this.field = field;
+    this.msg = msg;
   }
 };
