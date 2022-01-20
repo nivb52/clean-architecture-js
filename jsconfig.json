@@ -3,9 +3,11 @@
     "node_modules",
     "**/node_modules/*"
   ],
+  "compilerOptions": {
     "module": "CommonJS",
     "target": "es2020",
-    "baseUrl": "./src",
+  },
+  "baseUrl": "./src",
   "paths": {
     "@controllers/*": [
       "./src/controllers/*"

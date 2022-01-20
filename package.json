@@ -7,7 +7,7 @@
     "test": "jest --verbose --rootDir=src",
     "start": "node index.js"
   },
-  "keywords": [],
+  "keywords": ["nodejs_clean_architecture"],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,7 +15,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "chance": "^1.1.8",
+    "chance": "1.1.8",
     "jest": "^27.4.5"
   }
 }
