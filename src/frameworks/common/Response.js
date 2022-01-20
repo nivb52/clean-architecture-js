@@ -6,7 +6,7 @@ module.exports.Response = class Response {
   }
 };
 
-module.exports.Error = class ResponseError {
+module.exports.ResponseError = class ResponseError {
   constructor({ status, message, reason, url, ip, validationError }) {
     this.status = status;
     this.message = message;

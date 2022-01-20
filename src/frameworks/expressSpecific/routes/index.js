@@ -1,20 +1,18 @@
 const express = require("express");
 const usersRouter = require("./users");
+const productsRouter = require("./products");
+// const ordersRouter = require("./orders");
 
-const {Response} = require('../../common/Response')
-const TEMP_NOT_FOUND = async function (req, res, next) {
-  try {
-    res.json(new Response({ status: true, content: 'not found', error: null }));
-    next();
-  } catch (err) {
-    next(err);
-  }
-};
 
+const errorNotFound = require('../ErrorNotFound')
 module.exports = (dependencies) => {
   const routes = express.Router();
   const users = usersRouter(dependencies);
   routes.use("/users", users);
-  routes.use("/*", TEMP_NOT_FOUND);
-  return routes;  
+  routes.use("/products", productsRouter(dependencies));
+  // routes.use("/orders", ordersRouter);
+  
+  routes.use("/*", errorNotFound);
+  
+  return routes;
 };
