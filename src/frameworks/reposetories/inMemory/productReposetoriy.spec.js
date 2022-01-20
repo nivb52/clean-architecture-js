@@ -1,7 +1,7 @@
 const Chance = require("chance");
 const chance = new Chance();
 const { Product } = require("../../../entities/");
-const productRepository = require("./producRepository");
+const productRepository = require("./productRepository");
 const createFaketProduct = require("./../../../../tests/helpers/product.fake");
 const createTestProduct = () => createFaketProduct(chance);
 
@@ -26,14 +26,14 @@ describe("Product repository", () => {
   });
 
   test("Product should be deleted & empty object should be returned", async () => {
-    // init 2 Products & delete one  user & test
+    // init 2 Products & delete one & test
     const [presistProduct, deleteProduct] = await Promise.all([
       productRepository.add(createTestProduct()),
       productRepository.add(createTestProduct()),
     ]);
 
-    const deleteUserResult = await productRepository.delete(deleteProduct.id);
-    expect(deleteUserResult).toEqual({});
+    const deletedProductResult = await productRepository.delete(deleteProduct.id);
+    expect(deletedProductResult).toEqual({});
 
     const foundDeletedProduct = await productRepository.getById(
       deleteProduct.id
