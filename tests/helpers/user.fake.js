@@ -14,6 +14,7 @@ module.exports = (chance) =>
   new User({
     name: chance.name(),
     lastName: chance.last(),
+    email: chance.emailKnowen(),
     gender: userGender(chance.integer({ min: 0, max: 2 })),
     meta: { hair: { color: chance.color() } },
   });
