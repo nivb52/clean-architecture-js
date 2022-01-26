@@ -1,9 +1,7 @@
-const Chance = require("chance");
-const chance = new Chance();
-const { Product } = require("../../../entities/");
+// const { Product } = require("../../../entities/");
 const productRepository = require("./productRepository");
-const createFaketProduct = require("./../../../../tests/helpers/product.fake");
-const createTestProduct = () => createFaketProduct(chance);
+const chance = require("../../../../tests/helpers/common");
+const createTestProduct = () => chance.product();
 
 describe("Product repository", () => {
   test("New Product should be added and returned", async () => {

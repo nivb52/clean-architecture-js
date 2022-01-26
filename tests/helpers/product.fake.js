@@ -12,7 +12,7 @@ module.exports = (chance) =>
   new Product({
     name: chance.name(),
     inner_name: null,
-    price: chance.natural(),
+    price: chance.natural({ min: 1, max: 2000 }),
     category_id: chance.guid(),
     manufacturer_id: chance.company(),
     model: chanceModel(chance),

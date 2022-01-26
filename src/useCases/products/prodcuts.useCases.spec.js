@@ -1,7 +1,4 @@
 const { randomUUID } = require("crypto");
-const Chance = require("chance");
-const chance = new Chance();
-
 const {
   product: {
     addProductUseCase,
@@ -10,8 +7,9 @@ const {
     deleteProductUseCase,
   },
 } = require("../index");
-const fakeProductFactory = require("../../../tests/helpers/product.fake");
-const createTestProduct = () => fakeProductFactory(chance);
+const chance = require("../../../tests/helpers/common");
+const createTestProduct = () => chance.product();
+
 
 const mockProductRepo = {
   add: jest.fn(async (product) => ({

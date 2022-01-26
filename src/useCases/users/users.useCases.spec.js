@@ -1,8 +1,4 @@
 const { randomUUID } = require("crypto");
-const Chance = require("chance");
-const chance = new Chance();
-
-// const { User, userConstants } = require("../../entities/User");
 const {
   user: {
     addUserUseCase,
@@ -11,9 +7,8 @@ const {
     deleteUserUseCase,
   },
 } = require("../index");
-const { userRepository } = require("../../frameworks/reposetories/inMemory/");
-const fakeUserFactory = require("../../../tests/helpers/user.fake");
-const createTestUser = () => fakeUserFactory(chance);
+const chance = require("../../../tests/helpers/common");
+const createTestUser = () => chance.user();
 
 const mockUserRepo = {
   add: jest.fn(async (user) => ({
@@ -23,7 +18,6 @@ const mockUserRepo = {
   getById: jest.fn(async (id) => {
     const user = createTestUser();
     user.id = id;
-    console.log(user);
     return user;
   }),
   update: jest.fn(async (user) =>
@@ -45,11 +39,13 @@ describe("User use cases", () => {
 
     expect(addedUser.id).toBeDefined();
     expect(addedUser.name).toBe(newUser.name);
+    expect(addedUser.email).toBe(newUser.email);
 
     // check that the dependencies called as expected
     const invokedFunctionArguments = mockUserRepo.add.mock.calls[0][0];
     expect(invokedFunctionArguments.id).toBeUndefined();
     expect(invokedFunctionArguments.name).toBe(newUser.name);
+    expect(invokedFunctionArguments.email).toBe(newUser.email);
   });
   test("get user by id use case", async () => {
     const id = randomUUID();
@@ -58,6 +54,7 @@ describe("User use cases", () => {
     expect(foundUser.id).toBe(id);
     expect(foundUser.name).toBeDefined();
     expect(foundUser.lastName).toBeDefined();
+    expect(foundUser.email).toBeDefined();
     expect(foundUser.gender).toBeDefined();
     expect(foundUser.meta).toBeDefined();
 

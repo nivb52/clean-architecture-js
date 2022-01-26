@@ -1,14 +1,12 @@
-// const { User, constants }  = require("@entities";
+// @todo:
 // const { User, constants } = require( "@entities/index.js");
-const Chance = require("chance");
-const chance = new Chance();
-const createFaketUser = require('./../../../../tests/helpers/user.fake')
 const {
   User,
   constants: { userConstants },
 } = require("../../../entities/");
 const userRepository = require("./userReposetoriy");
-const createTestUser = () => createFaketUser(chance);
+const chance = require("../../../../tests/helpers/common");
+const createTestUser = () => chance.user();
 
 describe("User repository", () => {
   test("New User should be added and returned", async () => {

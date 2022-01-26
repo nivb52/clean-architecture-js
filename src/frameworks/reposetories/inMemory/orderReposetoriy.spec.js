@@ -1,9 +1,7 @@
-const Chance = require("chance");
-const chance = new Chance();
-const { Order } = require("../../../entities/");
+// const { Order } = require("../../../entities/");
 const orderRepository = require("./orderRepository");
-const createFaketOrder = require("./../../../../tests/helpers/order.fake");
-const createTestOrder = () => createFaketOrder(chance);
+const chance = require("../../../../tests/helpers/common");
+const createTestOrder = () => chance.order();
 
 describe("Order repository", () => {
   test("New Order should be added and returned", async () => {
