@@ -7,12 +7,10 @@ module.exports = dependencies => {
         throw new Error('Users Repository should be included in dependencies')
     }
 
-    const execute = (userData) => {
-        const newUser = new User(userData);
-        return userRepository.add(newUser)
-    }
-
     return {
-        execute
+        execute : (userData) => {
+            const newUser = new User(userData);
+            return userRepository.add(newUser)
+        }
     }
 }
