@@ -1,14 +1,16 @@
 module.exports.User = class User {
   constructor({
     id,
-    name = null,
-    lastName = null,
+    name = "",
+    lastName = "",
+    email = '',
     gender = genders.NOT_SPECIFIED,
     meta = {},
   }) {
     this.id = id;
-    this.name = name;
-    this.lastName = lastName;
+    this.name = name.trim();
+    this.lastName = lastName.trim();
+    this.email = email.trim();
     this.gender = gender;
     this.meta = meta;
   }
@@ -20,4 +22,4 @@ const genders = {
   MALE: 2,
 };
 
-module.exports.userConstants = {genders};
+module.exports.userConstants = { genders };
