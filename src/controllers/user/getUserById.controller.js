@@ -8,7 +8,7 @@ module.exports = (dependencies) => {
       const getUserByIdUseCaseAction = getUserByIdUseCase(dependencies);
 
       const { params = {} } = req;
-      const user = await updateUserUseCaseAction.execute(params.id);
+      const user = await getUserByIdUseCaseAction.execute(params.id);
 
       res.json(
         new Response({ status: true, content: user, error: null })
