@@ -51,7 +51,7 @@ describe("User use cases", () => {
     const id = randomUUID();
     const foundUser = await getUserByIdUseCase(dependencies).execute({id});
 
-    expect(foundUser.id).toBe(id);
+    expect(foundUser.id).toMatch(id);
     expect(foundUser.name).toBeDefined();
     expect(foundUser.lastName).toBeDefined();
     expect(foundUser.email).toBeDefined();
