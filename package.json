@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "keywords": ["nodejs_clean_architecture"],
-  "author": "",
+  "author": "niv",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
